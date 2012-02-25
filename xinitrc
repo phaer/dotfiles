@@ -8,9 +8,9 @@ emacs-snapshot --daemon
 
 urxvt -title "shell" &
 #emacsclient -c \
-    --frame-parameters="((name . \"Org\"))" \
-    --eval "(add-hook 'window-setup-hook 'delete-other-windows)
-            (org-agenda-list)(switch-to-buffer \"*Org Agenda*\")" &
+#    --frame-parameters="((name . \"Org\"))" \
+#    --eval "(add-hook 'window-setup-hook 'delete-other-windows)
+#            (org-agenda-list)(switch-to-buffer \"*Org Agenda*\")" &
 chromium &
 #icedove &
 #keepass2 $HOME/Documents/keypasskdbx.kdbx &
