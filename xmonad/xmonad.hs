@@ -44,7 +44,7 @@ main = do
 	}
         `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_l), spawn "slock")
-        , ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient.emacs-snapshot -c") 
+        , ((mod4Mask .|. shiftMask, xK_e), spawn "emacsclient -c") 
         , ((mod4Mask .|. shiftMask, xK_o), raiseMaybe (spawn "$HOME/code/bin/orgclient -c")                                                      (title =? "Agenda"))
         , ((mod4Mask .|. shiftMask, xK_m), raiseMaybe (runInTerm "-title ncmpc" "ncmpcpp")
                                                       (title =? "ncmpc")) ]
