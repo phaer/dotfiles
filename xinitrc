@@ -4,7 +4,7 @@
 xrdb -merge $HOME/.Xdefaults
 xset b off # disable audio bell
 feh --bg-scale $HOME/.background.jpg
-emacs-snapshot --daemon
+emacs --daemon
 
 urxvt -title "shell" &
 #emacsclient -c \
