@@ -1,0 +1,12 @@
+Config { font           = "xft:Inconsolate-7"
+       , bgColor        = "#073642"
+       , fgColor        = "#eee8d5"
+       , position       = Top
+       , commands       = [ Run StdinReader
+                          , Run Battery [] 10
+			  , Run Wireless "wlan0" [] 10
+                          ]
+       , sepChar          = "%"
+       , alignSep         = "}{"
+       , template         = "%StdinReader% }{ %battery% | %wlan0wi% | %date%"
+       }
