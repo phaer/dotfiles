@@ -2,6 +2,18 @@ import XMonad
 import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
+
+import XMonad.Layout.LayoutHints
+import XMonad.Layout.NoBorders
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Tabbed
+import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.WindowArranger
+import XMonad.Layout.Mosaic
+import XMonad.Layout.Spacing
+
+import XMonad.Hooks.SetWMName
 import XMonad.Util.Run
 import XMonad.Util.EZConfig(additionalKeys)
 import System.IO
@@ -27,7 +39,16 @@ myManageHook = composeAll
              , (className =? "Icedove") --> doShift "5:mail"
              , (title =? "ncmpcpp") --> doShift "6:music"
              , (title =? "keepass") --> doShift "8:pass"
-             , (className =? "mplayer") --> doShift "9:nil"]
+             , (className =? "mplayer") --> doShift "9:nil"
+             , isFullscreen --> doFullFloat]
+
+myLayoutHook = spacing 5 $ avoidStruts $ toggleLayouts (noBorders Full)
+    (smartBorders (tiled ||| mosaic 2 [3,2] ||| Mirror tiled ))
+    where
+        tiled   = layoutHints $ ResizableTall nmaster delta ratio []
+        nmaster = 1
+        delta   = 2/100
+        ratio   = 1/2
      
 main :: IO ()
 main = do
@@ -35,10 +56,11 @@ main = do
      xmonad $ defaultConfig 
         { modMask               = mod4Mask
         , terminal              = "urxvt"
+	, startupHook = setWMName "LG3D" -- need that for broken java apps like minecraft.
         , normalBorderColor     = "#073642" -- base 02
         , focusedBorderColor    = "#eee8d5" -- base 2
         , manageHook            = myManageHook <+> manageDocks <+> (manageHook defaultConfig) 
-        , layoutHook            = avoidStruts $ layoutHook defaultConfig
+        , layoutHook            = myLayoutHook
         , logHook               = dynamicLogWithPP myPP { ppOutput  = hPutStrLn myXmobar}
         , workspaces            = myWorkspaces
 	}
