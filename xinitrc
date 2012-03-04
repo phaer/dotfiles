@@ -3,7 +3,7 @@
 
 xrdb -merge $HOME/.Xdefaults
 xset b off # disable audio bell
-feh --bg-scale $HOME/.background.jpg
+feh --bg-scale $HOME/.leben-heiszt-revolte.jpg
 emacs --daemon
 
 urxvt -title "shell" &
@@ -15,4 +15,10 @@ chromium &
 #icedove &
 #keepass2 $HOME/Documents/keypasskdbx.kdbx &
 
-exec ck-launch-session xmonad
+#exec ck-launch-session xmonad
+while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
+  do
+    sleep 1
+  done &
+exec ck-launch-session dwm
+
