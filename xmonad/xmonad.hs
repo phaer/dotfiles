@@ -42,7 +42,7 @@ myManageHook = composeAll
              , (className =? "mplayer") --> doShift "9:nil"
              , isFullscreen --> doFullFloat]
 
-myLayoutHook = spacing 5 $ avoidStruts $ toggleLayouts (noBorders Full)
+myLayoutHook = avoidStruts $ toggleLayouts (noBorders Full)
     (smartBorders (tiled ||| mosaic 2 [3,2] ||| Mirror tiled ))
     where
         tiled   = layoutHints $ ResizableTall nmaster delta ratio []
